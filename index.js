@@ -35,6 +35,7 @@ const verifyJWT = (req, res, next) => {
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@believer.igrxpib.mongodb.net/?retryWrites=true&w=majority`;
 
+// const uri = "mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.16zdfjg.mongodb.net/?retryWrites=true&w=majority";
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
@@ -49,10 +50,10 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
 
-    const usersCollection = client.db("LVCdb").collection("users");
-    const classesCollection = client.db("LVCdb").collection("classes");
+    const usersCollection = client.db("Kids-Camp").collection("users");
+    const classesCollection = client.db("Kids-Camp").collection("classes");
     const bookedClassesCollection = client
-      .db("LVCdb")
+      .db("Kids-Camps")
       .collection("bookedClasses");
 
     app.post("/jwt", (req, res) => {
@@ -301,9 +302,15 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("LVC is running");
+  res.send("Kids Camp is running");
 });
 
 app.listen(port, () => {
-  console.log(`LVC is running on port ${port}`);
+  console.log(`kids camp is running on port ${port}`);
 });
+
+
+
+
+
+
